@@ -32,8 +32,7 @@ def prepare_messages(messages):
             completion = {'prompt': '', 'completion': ''}
 
         if 'text' in message:
-            if completion['completion']:
-                completion['completion'] += '\n'
+            completion['completion'] += '\n ' if completion['completion'] else ' '
             completion['completion'] += message['creator']['name'] + ': ' + message['text']
 
     # Remove duplicates
@@ -53,3 +52,4 @@ if __name__ == "__main__":
     messages = read_messages(args.messages)
     completions = prepare_messages(messages)
     write_completions(args.output, completions)
+    print(f'Wrote {len(messages)} messages into {len(completions)} completions')
