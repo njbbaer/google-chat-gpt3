@@ -35,6 +35,7 @@ def prepare_messages(messages):
             completion['completion'] += '\n ' if completion['completion'] else ' '
             completion['completion'] += message['creator']['name'] + ': ' + message['text']
 
+    completions.append(completion)
     # Remove duplicates
     completions = {frozenset(item.items()): item for item in completions}.values()
     return completions
