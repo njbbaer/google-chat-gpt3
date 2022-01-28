@@ -23,19 +23,24 @@ def prepare_messages(messages):
     last_message_time = dateutil.parser.parse(messages[0]['created_date'])
 
     for message in messages:
-        message_time = dateutil.parser.parse(message['created_date'])
+        date_text = message.get('created_date') or message['updated_date']
+        message_time = dateutil.parser.parse(date_text)
         delta = message_time - last_message_time
         last_message_time = message_time
 
+        # If more than a set time has passed since the last message, start a new completion
         if delta > MAX_TIME_DELTA and completion['completion']:
             completions.append(completion)
             completion = {'prompt': '', 'completion': ''}
 
+        # Add message to the current completion
         if 'text' in message:
             completion['completion'] += '\n ' if completion['completion'] else ' '
             completion['completion'] += message['creator']['name'] + ': ' + message['text']
 
+    # Add final completion
     completions.append(completion)
+
     # Remove duplicates
     completions = {frozenset(item.items()): item for item in completions}.values()
     return completions
@@ -48,9 +53,23 @@ def parse_arguments():
     return parser.parse_args()
 
 
+def estimate_tokens(completions):
+    num_chars = 0
+    for completion in completions:
+        num_chars += len(completion['prompt']) + len(completion['completion'])
+    return int(num_chars / 4)
+
+
+def print_statistics(messages, completions):
+    print(f'Finished writing {args.output}'.format(args.output))
+    print(f'     tokens: {estimate_tokens(completions)}')
+    print(f'   messages: {len(messages)}')
+    print(f'completions: {len(completions)}')
+
+
 if __name__ == "__main__":
     args = parse_arguments()
     messages = read_messages(args.messages)
     completions = prepare_messages(messages)
     write_completions(args.output, completions)
-    print(f'Wrote {len(messages)} messages into {len(completions)} completions')
+    print_statistics(messages, completions)
