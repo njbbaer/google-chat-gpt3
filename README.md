@@ -7,7 +7,7 @@ This repo will help you fine-tune GPT-3 with a Google Chat conversation history.
 3. Use the script to prepare data for training:
 
 ```shell
-python preparer.py --messages <MESSAGES_FILE> --output <TRAINING_FILE>
+python preparer.py --messages <MESSAGES_FILE>
 ```
 
 4. Test your training data with OpenAI's tool:

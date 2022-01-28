@@ -14,7 +14,7 @@ def read_messages(filepath):
 def write_completions(filepath, completions):
     with open(filepath, 'w') as f:
         for completion in completions:
-            f.write(json.dumps(completion) + "\n")
+            f.write(json.dumps(completion) + '\n')
 
 
 def prepare_messages(messages):
@@ -49,7 +49,7 @@ def prepare_messages(messages):
 def parse_arguments():
     parser = argparse.ArgumentParser()
     parser.add_argument('--messages', type=str, default='messages.json')
-    parser.add_argument('--output', type=str, default='output.jsonl')
+    parser.add_argument('--output', type=str, default='training.jsonl')
     return parser.parse_args()
 
 
