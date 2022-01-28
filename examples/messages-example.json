@@ -1,0 +1,64 @@
+{
+  "messages": [
+    {
+      "creator": {
+        "name": "Bob",
+        "email": "bob@example.com",
+        "user_type": "Human"
+      },
+      "created_date": "Saturday, December 12, 2015 at 12:41:45 AM UTC",
+      "text": "Hey Alice. How are you doing?",
+      "topic_id": "2yFH2tnYpps"
+    },
+    {
+      "creator": {
+        "name": "Alice",
+        "email": "alice@example.com",
+        "user_type": "Human"
+      },
+      "created_date": "Saturday, December 12, 2015 at 12:41:49 AM UTC",
+      "text": "I'm good Bob. How are you?",
+      "topic_id": "NGC4aYxTzeW"
+    },
+    {
+      "creator": {
+        "name": "Bob",
+        "email": "bob@example.com",
+        "user_type": "Human"
+      },
+      "created_date": "Saturday, December 12, 2015 at 12:43:09 AM UTC",
+      "text": "Great thanks",
+      "topic_id": "Ovfn9myFgul"
+    },
+    {
+      "creator": {
+        "name": "Alice",
+        "email": "alice@example.com",
+        "user_type": "Human"
+      },
+      "created_date": "Thursday, December 17, 2015 at 4:31:17 PM UTC",
+      "text": "When do you want to come over for dinner?",
+      "topic_id": "9JOAkJrWIh9"
+    },
+    {
+      "creator": {
+        "name": "Bob",
+        "email": "bob@example.com",
+        "user_type": "Human"
+      },
+      "created_date": "Thursday, December 17, 2015 at 4:33:17 PM UTC",
+      "text": "How about tomorrow at 6pm?",
+      "topic_id": "LCtvw75X2H7"
+    },
+    {
+      "creator": {
+        "name": "Alice",
+        "email": "alice@example.com",
+        "user_type": "Human"
+      },
+      "created_date": "Thursday, December 17, 2015 at 4:40:17 PM UTC",
+      "text": "Sounds perfect",
+      "topic_id": "R9Iu9IVaN6E"
+    }
+  ]
+}
