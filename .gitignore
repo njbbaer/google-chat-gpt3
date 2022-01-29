@@ -1,4 +1,6 @@
 *.json
 *.jsonl
+*.csv
 !examples/*.json
 !examples/*.jsonl
+archive/

@@ -3,8 +3,6 @@ import datetime
 import argparse
 import dateutil.parser
 
-MAX_TIME_DELTA = datetime.timedelta(hours=12)
-
 
 def read_messages(filepath):
     with open(filepath) as file:
@@ -21,17 +19,25 @@ def prepare_messages(messages):
     completions = []
     completion = {'prompt': '', 'completion': ''}
     last_message_time = dateutil.parser.parse(messages[0]['created_date'])
+    last_creator = ''
 
     for message in messages:
+        same_creator = message['creator']['name'] == last_creator
+        last_creator = message['creator']['name']
+
+        # Calculate time elapsed since the last message
         date_text = message.get('created_date') or message['updated_date']
         message_time = dateutil.parser.parse(date_text)
         delta = message_time - last_message_time
         last_message_time = message_time
 
-        # If more than a set time has passed since the last message, start a new completion
-        if delta > MAX_TIME_DELTA and completion['completion']:
-            completions.append(completion)
-            completion = {'prompt': '', 'completion': ''}
+        # Start a new completion if more than a set time has passed
+        if completion['completion']:
+            if (same_creator and delta > datetime.timedelta(hours=3)) or \
+               (not same_creator and delta > datetime.timedelta(hours=12)):
+                if '\n' in completion['completion']:
+                    completions.append(completion)
+                completion = {'prompt': '', 'completion': ''}
 
         # Add message to the current completion
         if 'text' in message:
