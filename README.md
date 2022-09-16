@@ -18,7 +18,7 @@ openai tools fine_tunes.prepare_data -f <TRAINING_FILE>
 
 You should see: `No remediations found.`
 
-5. Fine-tine GPT-3 with your training data:
+5. Fine-tune GPT-3 with your training data:
 
 ```shell
 openai api fine_tunes.create -t <TRAINING_FILE>
